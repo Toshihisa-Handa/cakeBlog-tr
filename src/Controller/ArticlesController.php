@@ -38,8 +38,9 @@ class ArticlesController extends AppController
             $this->Articles->patchEntity($article, $this->request->getData());
             if($this->Articles->save($article)){
                 $this->Flash->success(__('記事が更新されました'));
+                return $this->redirect(['action' =>'index']);//ここの記述で保存実行時にindexページへ戻っている
             }
-            $this->Flash->error(__('unable to update your article'));
+            $this->Flash->error(__('更新出来ませんでした。'));
         }
         $this->set('article', $article);
     }
