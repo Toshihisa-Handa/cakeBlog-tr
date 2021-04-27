@@ -23,11 +23,29 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('記事が保存されました。'));
+                $this->Flash->success(__('記事を保存する'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('記事の追加が出来ません。'));
         }
         $this->set('article', $article);
     }
+
+    public function edit($id = null)
+    {
+        $article = $this->Articles->get($id);
+        if($this->request->is(['post','put'])){
+            $this->Articles->patchEntity($article, $this->request->getData());
+            if($this->Articles->save($article)){
+                $this->Flash->success(__('記事が更新されました'));
+            }
+            $this->Flash->error(__('unable to update your article'));
+        }
+        $this->set('article', $article);
+    }
+
+
+
+
+
 }

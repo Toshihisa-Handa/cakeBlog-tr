@@ -5,6 +5,8 @@
         <th>Id</th>
         <th>タイトル</th>
         <th>作成日時</th>
+        <th>編集</th>
+
     </tr>
     <?php foreach ($articles as $article) : ?>
         <tr>
@@ -14,6 +16,9 @@
             </td>
             <td>
                 <?= $article->created->format('y/m/d'); ?>
+            </td>
+            <td>
+                <?= $this->Html->link('編集',['action'=>'edit',$article->id]) ?>
             </td>
         </tr>
     <?php endforeach; ?>
