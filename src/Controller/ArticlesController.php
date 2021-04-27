@@ -44,7 +44,15 @@ class ArticlesController extends AppController
         $this->set('article', $article);
     }
 
-
+    public function delete($id)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $article = $this->Articles->get($id);
+        if($this->Articles->delete($article)){
+            $this->Flash->success(__('id: {0} の記事が削除されました。', h($id)));
+            return $this->redirect(['action' => 'index']);
+        }
+    }
 
 
 

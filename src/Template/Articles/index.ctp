@@ -18,8 +18,13 @@
                 <?= $article->created->format('y/m/d'); ?>
             </td>
             <td>
-                <?= $this->Html->link('編集',['action'=>'edit',$article->id]) ?>
-            </td>
+            <?= $this->Form->postLink(
+                '削除　',
+                ['action' => 'delete', $article->id],
+                ['confirm' => '本当に削除しますか?'])
+            ?>
+            <?= $this->Html->link('編集', ['action' => 'edit', $article->id]) ?>
+        </td>
         </tr>
     <?php endforeach; ?>
 </table>
