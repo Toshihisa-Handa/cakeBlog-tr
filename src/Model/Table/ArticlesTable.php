@@ -10,6 +10,10 @@ class ArticlesTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
+        //以下はArticlesテーブルとCategoriesテーブルの紐付け処理
+        $this->belongsTo('Categories',[
+            'foreignKey' => 'category_id'
+        ]);
     }
 
  public function validationDefault(Validator $validator)
